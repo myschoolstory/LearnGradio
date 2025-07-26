@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Gradio Interactively</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.41.0/min/vs/editor/editor.main.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🎯</span>
+                <span class="logo-text">Learn Gradio</span>
+            </div>
+            <div class="nav-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Learn Gradio <span class="highlight">Interactively</span></h1>
+                <p class="hero-subtitle">Master the art of building beautiful machine learning demos with hands-on tutorials, live code examples, and interactive exercises.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="startLearning()">Start Learning</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('overview')">What is Gradio?</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Interactive Modules</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">20+</span>
+                        <span class="stat-label">Code Examples</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Hands-on</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="hero_image.png" alt="Gradio Interactive Demo" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Modules -->
+    <main class="main-content">
+        <!-- Module 1: What is Gradio? -->
+        <section class="module" id="overview">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">01</span>
+                    <h2 class="module-title">What is Gradio?</h2>
+                    <p class="module-description">Discover how Gradio transforms Python functions into beautiful web interfaces</p>
+                </div>
+                <div class="module-content">
+                    <div class="content-grid">
+                        <div class="content-text">
+                            <h3>From Function to Interface</h3>
+                            <p>Gradio is an open-source Python library that allows you to quickly build and share interactive web interfaces for machine learning models, APIs, or any Python function.</p>
+                            <ul class="feature-list">
+                                <li>✨ No JavaScript, CSS, or web hosting experience needed</li>
+                                <li>🚀 Just a few lines of Python code</li>
+                                <li>🌐 Instant sharing with public URLs</li>
+                                <li>📱 Mobile-friendly interfaces</li>
+                            </ul>
+                        </div>
+                        <div class="demo-preview">
+                            <div class="before-after">
+                                <div class="before">
+                                    <h4>Before (Python Function)</h4>
+                                    <pre><code>def greet(name):
+    return f"Hello {name}!"</code></pre>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="after">
+                                    <h4>After (Web Interface)</h4>
+                                    <div class="mock-interface">
+                                        <input type="text" placeholder="Enter your name" class="mock-input">
+                                        <button class="mock-button">Submit</button>
+                                        <div class="mock-output">Hello World!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(1)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(2)">Next: Installation</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 2: Installation -->
+        <section class="module" id="installation">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">02</span>
+                    <h2 class="module-title">Installation & Setup</h2>
+                    <p class="module-description">Get Gradio up and running on your system</p>
+                </div>
+                <div class="module-content">
+                    <div class="installation-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Prerequisites</h3>
+                                <p>Ensure you have Python 3.10 or higher installed on your system.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>Terminal</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>python --version</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Install Gradio</h3>
+                                <p>Use pip to install the latest version of Gradio.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>Terminal</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>pip install --upgrade gradio</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Verify Installation</h3>
+                                <p>Test your installation by importing Gradio in Python.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>Python</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>import gradio as gr
+print(gr.__version__)</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(2)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(3)">Next: First Interface</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 3: Your First Interface -->
+        <section class="module" id="first-interface">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">03</span>
+                    <h2 class="module-title">Your First Interface</h2>
+                    <p class="module-description">Build your first Gradio interface with live code editing</p>
+                </div>
+                <div class="module-content">
+                    <div class="editor-container">
+                        <div class="editor-section">
+                            <h3>Live Code Editor</h3>
+                            <p>Try editing the code below and see the changes in real-time!</p>
+                            <div class="code-editor" id="codeEditor1">
+                                <div class="editor-header">
+                                    <span>app.py</span>
+                                    <button class="run-btn" onclick="runCode(1)">Run Code</button>
+                                </div>
+                                <div class="editor-content" id="editor1"></div>
+                            </div>
+                        </div>
+                        <div class="preview-section">
+                            <h3>Interface Preview</h3>
+                            <div class="interface-preview" id="preview1">
+                                <div class="preview-placeholder">
+                                    <span>Click "Run Code" to see your interface</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explanation">
+                        <h3>Understanding the Code</h3>
+                        <div class="explanation-grid">
+                            <div class="explanation-item">
+                                <h4>Function Definition</h4>
+                                <p>The <code>greet</code> function is what gets wrapped by Gradio. It can be any Python function.</p>
+                            </div>
+                            <div class="explanation-item">
+                                <h4>Interface Creation</h4>
+                                <p><code>gr.Interface</code> takes your function and creates a web interface with the specified inputs and outputs.</p>
+                            </div>
+                            <div class="explanation-item">
+                                <h4>Launch</h4>
+                                <p><code>demo.launch()</code> starts the web server and opens your interface in the browser.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(3)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(4)">Next: Components</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 4: Understanding Components -->
+        <section class="module" id="components">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">04</span>
+                    <h2 class="module-title">Understanding Components</h2>
+                    <p class="module-description">Explore Gradio's rich collection of input and output components</p>
+                </div>
+                <div class="module-content">
+                    <div class="components-showcase">
+                        <div class="component-category">
+                            <h3>Input Components</h3>
+                            <div class="component-grid">
+                                <div class="component-card" onclick="showComponent('textbox')">
+                                    <div class="component-icon">📝</div>
+                                    <h4>Textbox</h4>
+                                    <p>Single or multi-line text input</p>
+                                </div>
+                                <div class="component-card" onclick="showComponent('number')">
+                                    <div class="component-icon">🔢</div>
+                                    <h4>Number</h4>
+                                    <p>Numeric input with validation</p>
+                                </div>
+                                <div class="component-card" onclick="showComponent('slider')">
+                                    <div class="component-icon">🎚️</div>
+                                    <h4>Slider</h4>
+                                    <p>Range selection with min/max</p>
+                                </div>
+                                <div class="component-card" onclick="showComponent('image')">
+                                    <div class="component-icon">🖼️</div>
+                                    <h4>Image</h4>
+                                    <p>Image upload and display</p>
+                                </div>
+                                <div class="component-card" onclick="showComponent('audio')">
+                                    <div class="component-icon">🎵</div>
+                                    <h4>Audio</h4>
+                                    <p>Audio file upload and recording</p>
+                                </div>
+                                <div class="component-card" onclick="showComponent('file')">
+                                    <div class="component-icon">📁</div>
+                                    <h4>File</h4>
+                                    <p>File upload of any type</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-demo" id="componentDemo">
+                            <h3>Component Demo</h3>
+                            <p>Click on a component above to see it in action!</p>
+                            <div class="demo-area">
+                                <div class="demo-placeholder">
+                                    Select a component to see its demo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(4)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(5)">Next: Building with Blocks</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 5: Building with Blocks -->
+        <section class="module" id="blocks">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">05</span>
+                    <h2 class="module-title">Building with Blocks</h2>
+                    <p class="module-description">Create custom layouts and complex interactions</p>
+                </div>
+                <div class="module-content">
+                    <div class="blocks-comparison">
+                        <div class="comparison-item">
+                            <h3>Interface vs Blocks</h3>
+                            <div class="comparison-grid">
+                                <div class="interface-side">
+                                    <h4>gr.Interface</h4>
+                                    <ul>
+                                        <li>✅ Quick and simple</li>
+                                        <li>✅ Perfect for single functions</li>
+                                        <li>❌ Limited layout control</li>
+                                        <li>❌ Single input/output flow</li>
+                                    </ul>
+                                </div>
+                                <div class="blocks-side">
+                                    <h4>gr.Blocks</h4>
+                                    <ul>
+                                        <li>✅ Full layout control</li>
+                                        <li>✅ Multiple functions</li>
+                                        <li>✅ Complex interactions</li>
+                                        <li>✅ Custom styling</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blocks-editor">
+                        <h3>Try Blocks</h3>
+                        <div class="editor-container">
+                            <div class="editor-section">
+                                <div class="code-editor" id="codeEditor2">
+                                    <div class="editor-header">
+                                        <span>blocks_demo.py</span>
+                                        <button class="run-btn" onclick="runCode(2)">Run Code</button>
+                                    </div>
+                                    <div class="editor-content" id="editor2"></div>
+                                </div>
+                            </div>
+                            <div class="preview-section">
+                                <div class="interface-preview" id="preview2">
+                                    <div class="preview-placeholder">
+                                        <span>Run the Blocks example to see the layout</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(5)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(6)">Next: Chatbots</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 6: Creating Chatbots -->
+        <section class="module" id="chatbots">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">06</span>
+                    <h2 class="module-title">Creating Chatbots</h2>
+                    <p class="module-description">Build conversational interfaces with ChatInterface</p>
+                </div>
+                <div class="module-content">
+                    <div class="chatbot-demo">
+                        <div class="demo-chat">
+                            <h3>Interactive Chatbot Demo</h3>
+                            <div class="chat-container" id="chatContainer">
+                                <div class="chat-message bot">
+                                    <div class="message-avatar">🤖</div>
+                                    <div class="message-content">Hello! I'm a Gradio chatbot. Ask me anything!</div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+                                <button onclick="sendChatMessage()">Send</button>
+                            </div>
+                        </div>
+                        <div class="chatbot-code">
+                            <h3>Chatbot Code</h3>
+                            <div class="code-editor" id="codeEditor3">
+                                <div class="editor-header">
+                                    <span>chatbot.py</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <div class="editor-content" id="editor3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(6)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(7)">Next: Sharing & Deployment</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 7: Sharing & Deployment -->
+        <section class="module" id="sharing">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">07</span>
+                    <h2 class="module-title">Sharing & Deployment</h2>
+                    <p class="module-description">Share your creations with the world</p>
+                </div>
+                <div class="module-content">
+                    <div class="sharing-options">
+                        <div class="sharing-method">
+                            <div class="method-icon">🔗</div>
+                            <h3>Quick Share</h3>
+                            <p>Get an instant public URL with <code>share=True</code></p>
+                            <div class="code-block">
+                                <pre><code>demo.launch(share=True)</code></pre>
+                            </div>
+                        </div>
+                        <div class="sharing-method">
+                            <div class="method-icon">🚀</div>
+                            <h3>Hugging Face Spaces</h3>
+                            <p>Deploy permanently on Hugging Face's free hosting</p>
+                            <div class="deployment-steps">
+                                <ol>
+                                    <li>Create a new Space on Hugging Face</li>
+                                    <li>Upload your Python file</li>
+                                    <li>Add requirements.txt with gradio</li>
+                                    <li>Your app goes live automatically!</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="sharing-method">
+                            <div class="method-icon">🐳</div>
+                            <h3>Docker Deployment</h3>
+                            <p>Containerize your app for any cloud platform</p>
+                            <div class="code-block">
+                                <pre><code>FROM python:3.10
+COPY . /app
+WORKDIR /app
+RUN pip install gradio
+CMD ["python", "app.py"]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(7)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="nextModule(8)">Next: Real-World Examples</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 8: Real-World Examples -->
+        <section class="module" id="examples">
+            <div class="module-container">
+                <div class="module-header">
+                    <span class="module-number">08</span>
+                    <h2 class="module-title">Real-World Examples</h2>
+                    <p class="module-description">Explore impressive applications built with Gradio</p>
+                </div>
+                <div class="module-content">
+                    <div class="examples-gallery">
+                        <div class="example-card">
+                            <div class="example-image">
+                                <div class="example-placeholder">🎨</div>
+                            </div>
+                            <h3>Stable Diffusion</h3>
+                            <p>AI image generation with custom prompts and parameters</p>
+                            <div class="example-tags">
+                                <span class="tag">Image Generation</span>
+                                <span class="tag">AI Art</span>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="example-image">
+                                <div class="example-placeholder">🗣️</div>
+                            </div>
+                            <h3>Whisper ASR</h3>
+                            <p>Automatic speech recognition and transcription</p>
+                            <div class="example-tags">
+                                <span class="tag">Speech</span>
+                                <span class="tag">Transcription</span>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="example-image">
+                                <div class="example-placeholder">📊</div>
+                            </div>
+                            <h3>Data Analysis</h3>
+                            <p>Interactive data visualization and analysis tools</p>
+                            <div class="example-tags">
+                                <span class="tag">Data Science</span>
+                                <span class="tag">Visualization</span>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="example-image">
+                                <div class="example-placeholder">🤖</div>
+                            </div>
+                            <h3>ChatGPT Clone</h3>
+                            <p>Conversational AI with memory and context</p>
+                            <div class="example-tags">
+                                <span class="tag">Chatbot</span>
+                                <span class="tag">NLP</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="completion-celebration">
+                        <div class="celebration-content">
+                            <h3>🎉 Congratulations!</h3>
+                            <p>You've completed the interactive Gradio learning course! You now have the skills to build amazing ML demos and applications.</p>
+                            <div class="next-steps">
+                                <h4>What's Next?</h4>
+                                <ul>
+                                    <li>🔗 <a href="https://gradio.app/docs" target="_blank">Explore the official documentation</a></li>
+                                    <li>🌟 <a href="https://huggingface.co/spaces" target="_blank">Browse Hugging Face Spaces for inspiration</a></li>
+                                    <li>💬 <a href="https://discord.gg/gradio" target="_blank">Join the Gradio community</a></li>
+                                    <li>🚀 Start building your own Gradio applications!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-actions">
+                    <button class="btn btn-outline" onclick="completeModule(8)">Mark as Complete</button>
+                    <button class="btn btn-primary" onclick="restartCourse()">Restart Course</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Learn Gradio</h3>
+                    <p>An interactive learning experience for mastering Gradio development.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://gradio.app" target="_blank">Official Website</a></li>
+                        <li><a href="https://gradio.app/docs" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/gradio-app/gradio" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://discord.gg/gradio" target="_blank">Discord</a></li>
+                        <li><a href="https://huggingface.co/spaces" target="_blank">Hugging Face Spaces</a></li>
+                        <li><a href="https://twitter.com/gradio" target="_blank">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Learn Gradio Interactive. Built with ❤️ for the ML community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.41.0/min/vs/loader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

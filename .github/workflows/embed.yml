@@ -1,0 +1,39 @@
+name: Embed Files
+
+on:
+  push:
+    paths:
+      - 'src/**'
+
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Embed files
+        run: |
+          # Read the files
+          html_file=$(cat src/index.html)
+          css_file=$(cat src/styles.css)
+          js_file=$(cat src/script.js)
+
+          # Embed the CSS
+          embedded_html="${html_file//<link rel=\"stylesheet\" href=\"styles.css\">/<style>${css_file//\\/\\\\}</style>}"
+
+          # Embed the JavaScript
+          embedded_html="${embedded_html//<script src=\"script.js\"><\/script>/<script>${js_file//\\/\\\\}</script>}"
+
+          # Write the new HTML file
+          echo "$embedded_html" > index.html
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Embed CSS and JavaScript files"
+          branch: main
+          file_pattern: index.html
+          commit_user_name: "GitHub Actions Bot"
+          commit_user_email: "actions@github.com"
+          commit_author: "GitHub Actions Bot <actions@github.com>"
